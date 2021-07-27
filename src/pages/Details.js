@@ -4,9 +4,9 @@ import GlobalStyles from '../styles/GlobalStyles';
 import Theme from '../styles/Theme';
 import api from '../services/api';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-//import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon3 from 'react-native-vector-icons/AntDesign';
-import Icon from 'react-native-vector-icons/FontAwesome';
+//import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 export function Details({ route }) {
@@ -62,7 +62,7 @@ return (
           <View >
             <Text style={styles.titleInfo}>Repositórios</Text>
             <View style={ styles.infoCount }>
-              <Icon3 name="source-repository-multiple" size={50} color="black" />
+              <FontAwesome5  name="code-branch" size={50} color="black" />
               <Text style={ styles.textCount}>{user.public_repos}</Text>
             </View>  
           </View>
@@ -74,6 +74,7 @@ return (
               <Text style={ styles.textCount}>{user.followers}</Text>
             </View>
           </View>
+          
        </View>
 
   </View>
@@ -84,12 +85,14 @@ return (
 const styles = StyleSheet.create({
 perfil:{
   alignItems:'center',
+  marginTop: 1,
 },
 info:{
   marginTop:70,
   width: '75%',
   flexDirection:'row',
   justifyContent:'space-between',
+  marginTop: 27,
 },
 infoItem:{
 },
@@ -103,7 +106,7 @@ textCount:{
   color: Theme.colors.black
 },
 titleInfo:{
-  fontSize:22,
+  fontSize:18,
   },
 title:{
   fontSize: 30,
@@ -111,10 +114,11 @@ title:{
 },
 textSmall:{
   fontSize: 14,
+  marginTop: 1,
   color: Theme.colors.gray
 },
 textRegular:{
-  marginTop: 20,
+  marginTop: 15,
   fontSize: 20,
   color: Theme.colors.gray
 },

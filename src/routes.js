@@ -9,7 +9,7 @@ export function Routes() {
     return (
         <Stack.Navigator>
             <Stack.Screen name='home' component={Home} options={{ headerShown: false }} />
-            <Stack.Screen name='details' component={Details} />
+            <Stack.Screen name='Details' component={Details} />
         </Stack.Navigator>
     );
 }
