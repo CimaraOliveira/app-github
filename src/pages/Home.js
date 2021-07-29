@@ -23,13 +23,15 @@ export function Home({ navigation }) {
     }
 
     function navigationDetails(login) {
-        navigation.navigate('Details', { user: login }); //passandoinformaçoes para uma rota o login
+        navigation.navigate('Details', { user: login }); //passandoinformaçoes para uma rota .o login
     }
 
-    //funcao para buscar usuario
+    //funcao para buscar usuario 
+    //async e await para usar um serviço
     async function handleSearchUser() {
         try {
-            response = await api.get('/users/' + nickname);
+            //respose requisição
+            response = await api.get('/users/' + nickname); //chamado a api
             const { data } = response;
 
             //pegando as informaçoes por um objeto
@@ -54,7 +56,7 @@ export function Home({ navigation }) {
             }
             Keyboard.dismiss();
             setNickname(' ');
-            loadData();
+            loadData(); //carega dados validos para tela
             console.log(obj);
 
         } catch (error) {
@@ -77,7 +79,7 @@ export function Home({ navigation }) {
     }
 
   
-    //chamando funcao loaddata
+    //chamando funcao load data com as informaçoes
     useEffect(() => {
         loadData();
     }, []);
@@ -88,13 +90,14 @@ export function Home({ navigation }) {
             <FontAwesome5 name="github" size={98} color={Theme.colors.primary} />
             <Text style={styles.title}>GIT.Networking </Text>
             <Input placeholder="Digite o nickname do usuário" onChangeText={setNickname}
-                onPress={handleSearchUser} />
+                onPress={handleSearchUser} /> {/* chamando a função salvar usuario */}
 
 
             <FlatList data={users}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => (
                     <ItemGit name={item.login} avatar_url={item.avatar_url} onPress={() => navigationDetails(item.login)} />
+                    /* chamando a tela navegação details */
                 )}
             />
         </View>

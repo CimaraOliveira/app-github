@@ -4,13 +4,9 @@ import GlobalStyles from '../styles/GlobalStyles';
 import Theme from '../styles/Theme';
 import api from '../services/api';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Icon3 from 'react-native-vector-icons/AntDesign';
-//import Icon from 'react-native-vector-icons/FontAwesome';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const keyAsyncStorage = "@app:git";
-export function Details({ route }) {
+export function Details({ route, navigation }) {
 
   const [user, setUser] = useState({});
 
@@ -32,7 +28,7 @@ export function Details({ route }) {
       }
 
       setUser(obj);
-      console.log(obj);
+      //console.log(obj);
 
     } catch (error) {
       console.error(error);
@@ -40,16 +36,22 @@ export function Details({ route }) {
   }
 
   async function handleDeleteUser(id) {
-    const newData = user.filter(item => item.id != id);
-    await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(newData));
-    await loadData()
-  }
+    try {
+      const retorno = await AsyncStorage.getItem(keyAsyncStorage);
+      const parseJson = JSON.parse(retorno);
+      const newData = parseJson.filter(item => item.id != id);
+      await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(newData));
+      navigation.navigate('Home');
+    } catch (error) {
+      console.error(error);
 
+    }
+
+  }
 
   useEffect(() => {
     const { user } = route.params;
     carregarUsuarios(user);
-
   }, []);
 
 
